@@ -107,9 +107,16 @@ chrome.tabs.executeScript({
                             // merge into event
                             events[eventCount]['location'] = compiledData['where'];
                             events[eventCount]['description'] += '\\nType: ' + compiledData['schedule type'];
+
+                            // get end date, but recurrence uses the "until" paradigm -- meaning
+                            // to include the last recurrence, we must do this day + 1. The Date
+                            // object automatically increments months and years for us.
+                            var untilDate = new Date(parseTime(timeExpl[1]) + ' ' + parseDate(dateExpl[1]));
+                            untilDate.setDate(untilDate.getDate() + 1);
+
                             events[eventCount]['rrule'] = {
                                 'freq': 'WEEKLY',
-                                'until': new Date(parseTime(timeExpl[1]) + ' ' + parseDate(dateExpl[1])),
+                                'until': untilDate,
                                 'interval': 1,
                                 'byday': byDay
                             };
