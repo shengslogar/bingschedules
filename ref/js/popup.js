@@ -1,6 +1,5 @@
 /**
  * @name        popup.js
- * @version     0.0.1
  * @description Manages popup window for extension, processing and exports
  * @requires    jquery, ics, ics.deps
  * @author      Sheng-Liang Slogar <slogar.sheng@gmail.com>
@@ -45,7 +44,7 @@ chrome.tabs.executeScript({
                             var $tr2 = $this.find('tr').eq(1);
 
                             $tr1.children().each(function (i) {
-                                compiledData[$(this).text().toLowerCase()] = $tr2.children().eq(i).text();
+                                compiledData[$.trim($(this).text().toLowerCase())] = $.trim($tr2.children().eq(i).text());
                             });
 
                             // process recurrence
@@ -106,7 +105,7 @@ chrome.tabs.executeScript({
 
                             // merge into event
                             events[eventCount]['location'] = compiledData['where'];
-                            events[eventCount]['description'] += ' (' + compiledData['schedule type'].toLowerCase() + ')';
+                            events[eventCount]['description'] += '\\nType: ' + compiledData['schedule type'];
                             events[eventCount]['rrule'] = {
                                 'freq': 'WEEKLY',
                                 'until': new Date(parseTime(timeExpl[1]) + ' ' + parseDate(dateExpl[1])),
@@ -118,8 +117,14 @@ chrome.tabs.executeScript({
                         }
                         // class information
                         else {
-                            var teacher = $this.find('th:contains("Instructor")').next().text();
-                            teacher = $.trim(teacher);
+                            // compile table data
+                            var compiledData = {};
+                            console.log($this.find('tr'))
+                            $this.find('tr').each(function () {
+                                compiledData[$.trim($(this).children('th').text())] = $.trim($(this).children('td').text());
+                            });
+
+                            console.log(compiledData);
 
                             // Sample Captions
                             // Type 1   `Gen Physics I Calc - WTSN ONLY - PHYS 131 - W 1`
@@ -134,17 +139,22 @@ chrome.tabs.executeScript({
                             }
 
                             // remove all spaces
-                            courseSection = courseSection.replace('/ /g', '');
+                            courseSection = courseSection.replace(/ /g, '');
 
                             // subject composed of course number and section
                             events[eventCount]['subject'] = courseName + '-' + courseSection;
 
-                            // description composed of course full title and teacher
-                            events[eventCount]['description'] = captionExpl[0] + ' taught by ' + teacher;
+                            // description composed of course full title and teacher, etc.
+                            events[eventCount]['description'] =
+                                'Name: ' + captionExpl[0]
+                                + '\\nInstructor: ' + compiledData['Assigned Instructor:']
+                                + '\\nCredits: ' + compiledData['Credits:']
+                                + '\\nLevel: ' + compiledData['Level:']
+                                + '\\nCampus: ' + compiledData['Campus:']
+                                + '\\nCRN: ' + compiledData['CRN:']
+                                + '\\nStatus: ' + compiledData['Status:'].replace(/\*/g, ''); // strip asterisks, i.e. `**Registered**`
                         }
                     });
-
-                    console.log(events);
 
                     // generate ICS file
                     var cal = ics();
@@ -165,6 +175,13 @@ chrome.tabs.executeScript({
 
 
                     // window.close(); // done
+                    // debug
+                    console.debug(events);
+
+
+                    // all done, show help info
+                    $('#ext-enabled').removeClass('visible');
+                    $('#ext-help').addClass('visible');
                 });
 
                 e.preventDefault();
@@ -174,7 +191,7 @@ chrome.tabs.executeScript({
         }
     }
     else { // i.e. chrome built-in page
-        $('#ext-incompat').addClass('visible');
+        $('#ext-disabled').addClass('visible');
     }
 });
 

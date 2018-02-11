@@ -18,12 +18,12 @@
             }
 
             .content {
-                padding : 20px 20px 10px 20px;
-                width   : 300px;
+                padding : 10px 15px;
+                width   : 260px;
             }
 
             .btn {
-                background      : #222;
+                background      : #016D51;
                 padding         : 10px 20px;
                 border-radius   : 3px;
                 color           : #fff;
@@ -33,47 +33,33 @@
                 text-decoration : none;
             }
 
-            .btn:hover {
-                background-color : #111;
-            }
-
             .btn:active {
-                background : #eee;
-                color      : #222;
+                background-color : #eee;
+                color            : #222;
             }
 
             .visible {
                 display : block !important;
             }
 
-            #ext-enabled, #ext-disabled, #ext-incompat {
+            #ext-enabled, #ext-disabled, #ext-help {
                 display : none;
             }
-
-            #banner {
-                position   : absolute;
-                top        : 16px;
-                left       : -62px;
-                width      : 200px;
-                transform  : rotateZ(-38deg);
-                background : #eee;
-                padding    : 8px 0;
-            }
         </style>
-        <script src="ref/js/jquery.min.js"></script>
     </head>
 
     <body>
-
-        <div id="banner">beta</div>
 
         <div class="content">
             <h1>Bing Schedules</h1>
 
             <div id="ext-enabled">
                 <p>
-                    Convert this page into an ICS file.
-                    From there, you can import your schedule into your favorite calendar.
+                    Never miss a class again.
+                </p>
+                <p>
+                    Export this page to an ICS file. From there, you can import
+                    your class schedule to a calendar of your choice.
                 </p>
                 <p>
                     <a class="btn" id="export-btn">Export Now</a>
@@ -82,33 +68,44 @@
 
             <div id="ext-disabled">
                 <p>
-                    This page is not compatible with this extension. Navigate to your
+                    To use this feature, navigate to your
                     Student Detail Schedule report through BU Brain (click on the Student tab,
                     then Registration) and try again.
                 </p>
                 <p>
-                    <a class="btn" href="http://my.binghamton.edu">Go to MyBinghamton</a>
+                    <a class="btn" href="http://my.binghamton.edu">Go myBinghamton</a>
                 </p>
             </div>
 
-            <div id="ext-incompat">
+            <div id="ext-help">
                 <p>
-                    This extension is not compatible with this sort of page.
+                    Great, you're almost there!
+                </p>
+                <p>
+                    Now, import the file you just received into a
+                    calendar of your choice. Here are some links to get you started.
+                </p>
+                <p>
+                    <a href="https://support.google.com/calendar/answer/37118?hl=en#">Google Calendar</a> |
+                    <a href="https://support.office.com/en-us/article/import-or-subscribe-to-a-calendar-in-outlook-com-cff1429c-5af6-41ec-a5b4-74f2c278e98c">Outlook Web</a>
+                </p>
+                <p>
+                    If you need help, we're just an email away.
                 </p>
             </div>
-
 
             <p>
-                <small>Created for Binghamton, by Binghamton.<br>
-                    Report any issues to dev@shengslogar.com.
+                <small>
+                    Created for Binghamton, by Binghamton.
+                    <br>
+                    Report any issues to <a href="mailto:dev@shengslogar.com?subject=Bing+Schedules+Issue">dev@shengslogar.com</a>.
                 </small>
             </p>
         </div>
 
-
+        <script src="ref/js/jquery.min.js?v=3.3.1"></script>
         <script src="ref/js/ics.deps.min.js"></script>
         <script src="ref/js/ics.min.js"></script>
-        <script src="ref/js/jquery.min.js?v=3.3.1"></script>
         <script src="ref/js/popup.js"></script>
     </body>
 </html>
