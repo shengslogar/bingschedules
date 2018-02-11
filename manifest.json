@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "Bing Schedules",
   "short_name": "Bing Schedules",
-  "description": "This extension allows Binghamton University students to export their online class schedule, enabling easy imports into a calendar of their choice.",
-  "version": "0.0.1",
+  "description": "This extension allows Binghamton University students to export their online class schedule to a VCS file.",
+  "version": "0.0.2",
   "browser_action": {
     "default_icon": "ref/img/popup.png",
     "default_title": "Bing Schedules",
