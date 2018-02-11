@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Bing Schedules",
+  "short_name": "Bing Schedules",
+  "description": "This extension allows Binghamton University students to easily add their class schedule to Google Calendar.",
+  "version": "0.0.1",
+  "browser_action": {
+    "default_icon": "ref/img/popup.png",
+    "default_title": "Bing Schedules",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "ref/img/icon16.png",
+    "48": "ref/img/icon48.png",
+    "128": "ref/img/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "downloads"
+  ]
+}

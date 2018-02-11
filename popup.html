@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bing Schedules</title>
+        <style type="text/css">
+
+            * {
+                box-sizing : border-box;
+                transition : .2s ease;
+            }
+
+            body {
+                text-align : center;
+            }
+
+            a {
+                color : #016D51;
+            }
+
+            .content {
+                padding : 20px 20px 10px 20px;
+                width   : 300px;
+            }
+
+            .btn {
+                background      : #222;
+                padding         : 10px 20px;
+                border-radius   : 3px;
+                color           : #fff;
+                display         : inline-block;
+                margin          : 10px auto;
+                cursor          : pointer;
+                text-decoration : none;
+            }
+
+            .btn:hover {
+                background-color : #111;
+            }
+
+            .btn:active {
+                background : #eee;
+                color      : #222;
+            }
+
+            .visible {
+                display : block !important;
+            }
+
+            #ext-enabled, #ext-disabled, #ext-incompat {
+                display : none;
+            }
+
+            #banner {
+                position   : absolute;
+                top        : 16px;
+                left       : -62px;
+                width      : 200px;
+                transform  : rotateZ(-38deg);
+                background : #eee;
+                padding    : 8px 0;
+            }
+        </style>
+        <script src="ref/js/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <div id="banner">beta</div>
+
+        <div class="content">
+            <h1>Bing Schedules</h1>
+
+            <div id="ext-enabled">
+                <p>
+                    Convert this page into an ICS file.
+                    From there, you can import your schedule into your favorite calendar.
+                </p>
+                <p>
+                    <a class="btn" id="export-btn">Export Now</a>
+                </p>
+            </div>
+
+            <div id="ext-disabled">
+                <p>
+                    This page is not compatible with this extension. Navigate to your
+                    Student Detail Schedule report through BU Brain (click on the Student tab,
+                    then Registration) and try again.
+                </p>
+                <p>
+                    <a class="btn" href="http://my.binghamton.edu">Go to MyBinghamton</a>
+                </p>
+            </div>
+
+            <div id="ext-incompat">
+                <p>
+                    This extension is not compatible with this sort of page.
+                </p>
+            </div>
+
+
+            <p>
+                <small>Created for Binghamton, by Binghamton.<br>
+                    Report any issues to dev@shengslogar.com.
+                </small>
+            </p>
+        </div>
+
+
+        <script src="ref/js/ics.deps.min.js"></script>
+        <script src="ref/js/ics.min.js"></script>
+        <script src="ref/js/jquery.min.js?v=3.3.1"></script>
+        <script src="ref/js/popup.js"></script>
+    </body>
+</html>
