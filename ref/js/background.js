@@ -9,12 +9,7 @@
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
-    // make icon light up on BU Brain -------------------------------
-    // todo: figure out how to make this more intuitive
-    // we want to show a menu at all times so the user
-    // knows how to use our extension, but we also don't
-    // want to appear faulty by lighting up at perceivably
-    // odd times.
+    // light up extension icon when export feature is available
     // IMPORTANT: This code must match the selector in popup.js
     if (tab.url.split('/')[2].indexOf('ssb.cc.binghamton.edu') != -1 && tab.title == 'Student Detail Schedule') {
 
