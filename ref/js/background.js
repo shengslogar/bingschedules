@@ -9,14 +9,20 @@
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
-    if (tab.url.split('/')[2].indexOf('binghamton.edu') != -1) {
+    // make icon light up on BU Brain -------------------------------
+    // todo: figure out how to make this more intuitive
+    // we want to show a menu at all times so the user
+    // knows how to use our extension, but we also don't
+    // want to appear faulty by lighting up at perceivably
+    // odd times.
+    if (tab.url.split('/')[2].indexOf('ssb.cc.binghamton.edu') != -1) {
 
-        // chrome.pageAction.setIcon({
-        //    tabId: tabId,
-        //    path: '/ref/img/popup-color.png'
-        // });
-
-        chrome.pageAction.show(tabId);
-
+        chrome.pageAction.setIcon({
+            tabId: tabId,
+            path: '/ref/img/popup-color.png'
+        });
     }
+
+    // allow popup
+    chrome.pageAction.show(tabId);
 });
