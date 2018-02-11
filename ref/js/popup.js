@@ -104,6 +104,29 @@ chrome.tabs.executeScript({
                             events[eventCount]['begin'] = new Date(parseTime(timeExpl[0]) + ' ' + parseDate(dateExpl[0]));
                             events[eventCount]['end'] = new Date(parseTime(timeExpl[1]) + ' ' + parseDate(dateExpl[0]));
 
+                            var dayToAbbrev = [
+                                'SU',
+                                'MO',
+                                'TU',
+                                'WE',
+                                'TH',
+                                'FR',
+                                'SA'
+                            ];
+
+                            // A class period is, say January 16 - Mar 2, but the actual class
+                            // may "start" on a different day depending on its schedule -- MWF or TR.
+                            // To make this work, we increment our begin/end DAY until we reach the
+                            // proper day. This is technically lazy code and could be optimized.
+                            if (byDay.length > 0) {
+                                // while starting day != proper recurrence day
+                                while ($.inArray(dayToAbbrev[events[eventCount]['begin'].getDay()], byDay) == -1) {
+                                    // increment
+                                    events[eventCount]['begin'].setDate(events[eventCount]['begin'].getDate() + 1);
+                                    events[eventCount]['end'].setDate(events[eventCount]['end'].getDate() + 1);
+                                }
+                            }
+
                             // merge into event
                             events[eventCount]['location'] = compiledData['where'];
                             events[eventCount]['description'] += '\\nType: ' + compiledData['schedule type'];
