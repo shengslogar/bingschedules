@@ -15,7 +15,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     // knows how to use our extension, but we also don't
     // want to appear faulty by lighting up at perceivably
     // odd times.
-    if (tab.url.split('/')[2].indexOf('ssb.cc.binghamton.edu') != -1) {
+    // IMPORTANT: This code must match the selector in popup.js
+    if (tab.url.split('/')[2].indexOf('ssb.cc.binghamton.edu') != -1 && tab.title == 'Student Detail Schedule') {
 
         chrome.pageAction.setIcon({
             tabId: tabId,

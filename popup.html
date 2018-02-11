@@ -18,8 +18,8 @@
             }
 
             .content {
-                padding : 10px 20px;
-                width   : 260px;
+                padding : 20px 15px;
+                width   : 270px;
             }
 
             .btn {
@@ -28,7 +28,7 @@
                 border-radius   : 3px;
                 color           : #fff;
                 display         : inline-block;
-                margin          : 10px auto;
+                margin          : 8px auto;
                 cursor          : pointer;
                 text-decoration : none;
             }
@@ -42,7 +42,7 @@
                 display : block !important;
             }
 
-            #ext-enabled, #ext-disabled, #ext-help {
+            #ext-enabled, #ext-disabled, #ext-help, #ext-err {
                 display : none;
             }
         </style>
@@ -96,9 +96,21 @@
                 </p>
             </div>
 
+            <div id="ext-err">
+                <p>
+                    Oh snippety snap!
+                </p>
+                <p>
+                    We couldn't find anything to export.
+                    If this keeps happening, please attach a screenshot
+                    of your current schedule and send a report to the email
+                    below.
+                </p>
+            </div>
+
             <p>
                 <small>
-                    Created for Binghamton, in Binghamton.<br>
+                    Created in Binghamton, for Binghamton.<br>
                     Report any issues to <a href="mailto:dev@shengslogar.com?subject=Bing+Schedules+Issue">dev@shengslogar.com</a>.
                 </small>
             </p>

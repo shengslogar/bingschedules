@@ -12,6 +12,7 @@ chrome.tabs.executeScript({
 
         props = props[0]; // only get current page info
 
+        // IMPORTANT: This code must match the selector in background.js
         if (props[0] == 'ssb.cc.binghamton.edu' && props[1] == 'Student Detail Schedule') {
 
             $('#ext-enabled').addClass('visible');
@@ -156,32 +157,38 @@ chrome.tabs.executeScript({
                         }
                     });
 
-                    // generate ICS file
-                    var cal = ics();
-                    for (var i in events) {
-                        var event = events[i];
-
-                        cal.addEvent(
-                            event['subject'],
-                            event['description'],
-                            event['location'],
-                            event['begin'],
-                            event['end'],
-                            event['rrule']
-                        )
-                    }
-
-                    cal.download('bing-schedules-export-' + $.now());
-
-
-                    // window.close(); // done
                     // debug
                     console.debug(events);
 
+                    if (events.length > 0) {
 
-                    // all done, show help info
+                        // generate ICS file
+                        var cal = ics();
+                        for (var i in events) {
+                            var event = events[i];
+
+                            cal.addEvent(
+                                event['subject'],
+                                event['description'],
+                                event['location'],
+                                event['begin'],
+                                event['end'],
+                                event['rrule']
+                            )
+                        }
+
+                        cal.download('bing-schedules-export-' + $.now());
+
+                        // all done, show help info
+                        $('#ext-help').addClass('visible');
+                    }
+                    else {
+                        // no events found
+                        $('#ext-err').addClass('visible');
+                    }
+
+                    // hide initial pane
                     $('#ext-enabled').removeClass('visible');
-                    $('#ext-help').addClass('visible');
                 });
 
                 e.preventDefault();
