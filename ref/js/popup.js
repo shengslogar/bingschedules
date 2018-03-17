@@ -150,12 +150,10 @@ chrome.tabs.executeScript({
                         else {
                             // compile table data
                             var compiledData = {};
-                            console.log($this.find('tr'))
+
                             $this.find('tr').each(function () {
                                 compiledData[$.trim($(this).children('th').text())] = $.trim($(this).children('td').text());
                             });
-
-                            console.log(compiledData);
 
                             // Sample Captions
                             // Type 1   `Gen Physics I Calc - WTSN ONLY - PHYS 131 - W 1`
@@ -207,7 +205,16 @@ chrome.tabs.executeScript({
                             )
                         }
 
-                        cal.download('bing-schedules-export-' + $.now());
+                        // download file
+                        chrome.downloads.download({
+                            url: URL.createObjectURL(
+                                new Blob([cal.build()], {type: "text/plain"})
+                            ),
+                            filename: 'bing-schedules-export-' + $.now() + '.ics'
+                        });
+
+                        // no longer works -?
+                        // cal.download('bing-schedules-export-' + $.now());
 
                         // all done, show help info
                         $('#ext-help').addClass('visible');
